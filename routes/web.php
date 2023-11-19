@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('auth.login');
+Route::post('/login', [\App\Http\Controllers\LoginController::class, 'doLogin']);
+
+Route::prefix('/comm')->name('comm.')->controller(\App\Http\Controllers\CommController::class)->group(function (){
+    Route::get('/', 'index')->name('index');
+});
+
+Route::prefix('/provider')->name('fournisseur.')->controller(\App\Http\Controllers\CommController::class)->group(function (){
+    Route::get('/', 'index')->name('index');
 });
