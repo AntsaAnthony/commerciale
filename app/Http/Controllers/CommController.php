@@ -12,12 +12,13 @@ use App\Models\DetailProformaDemande;
 use App\Models\Proforma;
 use App\Models\ProformaDetail;
 use App\Models\ProduitDispo;
+use App\Models\BonDeCommande;
 
 
 class CommController extends Controller
 {
     public function index() {
-        dd("Commercial Here, Welcome");
+        dd(BonDeCommande::find(1)->proformat);
     }
 
     public function showProductGroup() {
