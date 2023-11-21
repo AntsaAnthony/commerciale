@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('proformas', function (Blueprint $table) {
             $table->id();
             $table->string('mode_paiement');
-            $table->int('etat');
+            $table->integer('etat');
             $table->timestamps();
         });
         Schema::table('proformas',function (Blueprint $table){
             $table->foreignIdFor(\App\Models\Fournisseur::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\DemandeProformat::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\DemandeProforma::class)->constrained()->cascadeOnDelete();
         });
     }
 
