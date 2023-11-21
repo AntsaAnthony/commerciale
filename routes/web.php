@@ -22,6 +22,7 @@ Route::prefix('/comm')->name('comm.')->controller(\App\Http\Controllers\CommCont
     Route::get('/insertbesoin','AffichBesoin')->name('besoin');
     Route::post('/insertbesoin','insertBesoin');
     Route::get('/demandeProforma', 'insererDemandeProforma')->name('insertProforma');
+    Route::get('/test', 'test');
 });
 
 Route::prefix('/provider')->name('fournisseur.')->controller(\App\Http\Controllers\CommController::class)->group(function (){

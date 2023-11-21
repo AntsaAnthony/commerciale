@@ -28,3 +28,9 @@ INSERT INTO users (id,name,email,password,profil,auth_level,created_at,updated_a
 
 INSERT INTO  detail_founisseurs (id,fournisseur_id,user_id,created_at,updated_at) VALUES
 (DEFAULT,1,2,current_timestamp,current_timestamp);
+
+
+INSERT INTO produit_dispos (id,fournisseur_id,product_id,quantite,prix_unitaire,created_at,updated_at) VALUES
+(DEFAULT,1,1,50,15000,current_timestamp,current_timestamp),
+(DEFAULT,1,2,10,500,current_timestamp,current_timestamp),
+(DEFAULT,1,3,50,2000,current_timestamp,current_timestamp);

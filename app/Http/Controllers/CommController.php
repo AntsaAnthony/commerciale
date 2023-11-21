@@ -8,12 +8,16 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\Category;
 use App\Models\DemandeProforma;
+use App\Models\DetailProformaDemande;
+use App\Models\Proforma;
+use App\Models\ProformaDetail;
+use App\Models\ProduitDispo;
 
 
 class CommController extends Controller
 {
     public function index() {
-        dd("It's commercial section");
+        dd("Commercial Here, Welcome");
     }
 
     public function showProductGroup() {
@@ -40,7 +44,24 @@ class CommController extends Controller
         ]);
     }
 
-    public function insererDemandeProforma(){
-        $demandeProforma = DemandeProforma::addDemandeProforma(1,2);
+    public function test()
+    {
+        $lolo = ProduitDispo::where('fournisseur_id', '=',2);
+        dd($lolo);
+        $prof = Proforma::envoyerProforma(2,3,'cheque');
+        echo "Vita ahhhhhh";
+    }
+
+    public function insererDemandeProforma()
+    {
+        if(session()->has('user'))
+        {
+            $user = session()->get('user');
+            $demandeProforma = DemandeProforma::addDemandeProforma($user->id,2);
+        }
+        else
+        {
+            throw new \Exception("Vous devez vous connécter pour faire cela");
+        }
     }
 }

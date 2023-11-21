@@ -15,22 +15,20 @@ class Besoin extends Model
     {
         $products = Product::all();
 
-        // dd($products[0]->category);
         $allbesoin = array();
         foreach ($products as $product) {
             $besoins = Besoin::where('product_id', '=', $product->id)->get();
-            if($besoins != null && count($besoins)>0){
-                $temp = new Besoin();
-                $temp->product_id = $product->id;
-                foreach ($besoins as $besoin) {
-                    $temp->quantity = $temp->quantity + $besoin->quantity;
-                }
-                array_push($allbesoin, $temp);
+            $temp = new Besoin();
+            $temp->product_id = $product->id;
+            foreach ($besoins as $besoin) {
+                $temp->quantity = $temp->quantity + $besoin->quantity;
             }
+            array_push($allbesoin, $temp);
         }
         return $allbesoin;
     }
-
+    
+    
     public function service() {
         return $this->belongsTo(\App\Models\Service::class);
     }

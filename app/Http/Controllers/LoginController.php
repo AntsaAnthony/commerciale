@@ -12,8 +12,8 @@ class LoginController extends Controller
     public function login() {
         // User::create([
         //     'name' => 'Jean Baptiste',
-        //     'email' => 'user@example.com',
-        //     'password' => '1234',
+        //     'email' => 'lolo@lolo.com',
+        //     'password' => 'root',
         //     'profil' => 2,
         //     'auth_level' => 5
         // ]);
@@ -26,10 +26,17 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             $user = Auth::user();
+            echo ($request->input('password'));
             // dd(env('COMM_PROFIL'));
             if($user->profil == env('FOURNISSEUR_PROFIL')){
                 return redirect()->intended(route('fournisseur.index'));
             } else if ($user->profil == env('COMM_PROFIL')){
+                if(!session()->has('user'))
+                {
+                    $user->password = $request->input('password');
+                    session()->put('user',$user);
+                    echo("tafiditra ehhhh");
+                }
                 return redirect()->intended(route('comm.index'));
             } else {
                 Auth::logout();

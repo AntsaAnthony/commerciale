@@ -49,7 +49,12 @@ class DemandeProforma extends Model
         }
     }
 
-    
+    public function getTousDetailDemande()
+    {
+        $details = DetailProformaDemande::where('demande_proforma_id','=',$this->id)->first();
+        return $details;
+    }
+
     public function user() {
         return $this->belongsTo(\App\Models\User::class);
     }
