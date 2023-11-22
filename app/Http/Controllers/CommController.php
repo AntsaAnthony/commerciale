@@ -46,9 +46,9 @@ class CommController extends Controller
 
     public function test()
     {
-        $lolo = ProduitDispo::where('fournisseur_id', '=',2);
-        dd($lolo);
-        $prof = Proforma::envoyerProforma(2,3,'cheque');
+        $lolo = ProduitDispo::where('fournisseur_id', '=',1)->get();
+        // dd($lolo);
+        $prof = Proforma::envoyerProforma(1,3,'cheque');
         echo "Vita ahhhhhh";
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProformaDetail extends Model
 {
     use HasFactory;
-    protected $fillable =['proforma_id','product_dispo_id']; 
+    protected $fillable =['proforma_id','produit_dispo_id']; 
 
 
 }

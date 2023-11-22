@@ -28,7 +28,7 @@ class Proforma extends Model
         {
             ProformaDetail::create([
                 'proforma_id'=> $this->id,
-                'product_dispo_id'=> $detaiProform->id
+                'produit_dispo_id'=> $detaiProform->id
             ]);
         }
     }
@@ -38,21 +38,20 @@ class Proforma extends Model
         $demande = DemandeProforma::where('id',$this->demande_proforma_id)->first();
         $detailsDemande = $demande->getTousDetailDemande();
         echo("idFournisseur: ".$this->fournisseur_id);
-        $allProduct = ProduitDispo::where('fournisseur_id',$this->fournisseur_id);
+        $allProduct = ProduitDispo::where('fournisseur_id',$this->fournisseur_id)->get();
         $productDispo = array();
-        dd($allProduct);
+        // dd($detailsDemande);
         foreach ($detailsDemande as $detail) 
         {
             foreach ($allProduct as $produit) 
-            {
-                echo($detail->product->id+"-------"+product->product->id);
-                if($detail->product->id==product->product->id)
+            {   
+                echo($detail->product->id."-------".$produit->id);
+                if($detail->product->id==$produit->id)
                 {
                     array_push($productDispo,$produit);
                 }
             }
         }
-        dd($productDispo);
         return $productDispo;
     }
     public function fournisseur() {
