@@ -89,6 +89,12 @@ class Proforma extends Model
         return $moinsDisants;
     }
 
+    public function getTousDetailProforma()
+    {
+        $details = ProformaDetail::where('proforma_id', '=', $this->id)->get();
+        return $details;
+    }
+
     public function fournisseur()
     {
         return $this->belongsTo(\App\Models\Fournisseur::class);
