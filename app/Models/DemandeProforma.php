@@ -51,7 +51,8 @@ class DemandeProforma extends Model
 
     public function getTousDetailDemande()
     {
-        $details = DetailProformaDemande::where('demande_proforma_id','=',$this->id)->first();
+        echo"</br>idDemandeProforma".$this->id;
+        $details = DetailProformaDemande::where('demande_proforma_id','=',$this->id)->get();
         return $details;
     }
 
