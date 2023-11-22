@@ -11,6 +11,7 @@ use App\Models\Proforma;
 use App\Models\ProduitDispo;
 use App\Models\BonDeCommande;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class CommController extends Controller
 {
@@ -62,5 +63,15 @@ class CommController extends Controller
         } else {
             throw new \Exception("Vous devez vous connécter pour faire cela");
         }
+    }
+        public function PDFProforma()
+    {
+        // $donnees = VotreModele::all(); // Récupérez vos données depuis le modèle
+
+        // $pdf = PDF::loadView('nom_de_la_vue_pdf', compact('donnees'));
+
+        $pdf = PDF::loadView('pdf.proforma');
+
+        return $pdf->download('proforma.pdf'); // Téléchargez le PDF généré
     }
 }

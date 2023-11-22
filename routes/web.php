@@ -29,6 +29,10 @@ Route::prefix('/provider')->name('fournisseur.')->controller(\App\Http\Controlle
     Route::get('/', 'index')->name('index');
 });
 
+Route::prefix('/pdf')->name('pdf.')->controller(\App\Http\Controllers\CommController::class)->group(function (){
+    Route::get('/proforma', 'PDFProforma');
+});
+
 Route::get('/validationBesoins', [\App\Http\Controllers\BesoinController::class,'getBesoins'])->name('besoins.all');
 Route::get('/valider', [\App\Http\Controllers\BesoinController::class, 'valider'])->name('besoin.valider');
 
