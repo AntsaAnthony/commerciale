@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proformas', function (Blueprint $table) {
+        Schema::create('bon_de_commandes', function (Blueprint $table) {
             $table->id();
-            $table->string('mode_paiement');
+            $table->integer('tva');
             $table->integer('etat');
             $table->timestamps();
         });
-        Schema::table('proformas',function (Blueprint $table){
-            $table->foreignIdFor(\App\Models\Fournisseur::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\DemandeProforma::class)->constrained()->cascadeOnDelete();
+        Schema::table('bon_de_commandes',function (Blueprint $table){
+            $table->foreignIdFor(\App\Models\Proforma::class)->constrained()->cascadeOnDelete();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proformas');
+        Schema::dropIfExists('bon_de_commandes');
     }
 };

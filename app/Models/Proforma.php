@@ -19,7 +19,7 @@ class Proforma extends Model
         ]);
         $proforma->envoyerLeProforma();
     }
-    
+
     // Tonga de mi-inserer an'ilay demande proformat sy ny nonbre ana quandite ilainy fotsiny
     public function envoyerLeProforma()
     {
@@ -54,6 +54,42 @@ class Proforma extends Model
         }
         return $productDispo;
     }
+
+    public static function getProduitDispo($proforma, $idProduit) {
+        $produiDispos = $proforma->getProduitDispoParDemande();
+        foreach ($produiDispos as $dispo) {
+            if($dispo->id==$product->id){
+                return $dispo;
+            }
+        }
+    }
+
+    public static function getMoinDisantProduit($proformas, $product){
+        $min = $proformas[0];
+        $disp = Proforma::getProduitDispo($proformas[0], $product->id);
+        foreach ($proformas as $proforma) {
+            $produiDispo = Proforma::getProduitDispo($proforma, $product->id);
+            if ($produiDispo->prix_unitaire < $disp->prix_unitaire){
+                $min = $proforma;
+                $disp = $produiDispo;
+
+            }
+        }
+        return $min;
+    }
+
+    public static function getMoinDisantParProduit($proformas, $products) {
+        $moinsDisants = array();
+        foreach ($products as $product) {
+            $moinsDisant = new MoinDisant();
+            $temp = Proforma::getMoinDisantProduit($proformas, $product);
+            $moinsDisant->product = $product;
+            $moinsDisant->proformat = $temp;
+            array_push($moinsDisants, $moinsDisant);
+        }
+        return $moinsDisants;
+    }
+
     public function fournisseur() {
         return $this->belongsTo(\App\Models\Fournisseur::class);
     }

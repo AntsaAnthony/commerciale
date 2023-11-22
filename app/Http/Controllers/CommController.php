@@ -12,16 +12,17 @@ use App\Models\DetailProformaDemande;
 use App\Models\Proforma;
 use App\Models\ProformaDetail;
 use App\Models\ProduitDispo;
+use App\Models\BonDeCommande;
 
 
 class CommController extends Controller
 {
     public function index() {
-        dd("Commercial Here, Welcome");
+        dd(BonDeCommande::find(1)->proformat);
     }
 
     public function showProductGroup() {
-                
+
         $allbesoin = Besoin::getBesoinParNature();
         return view('commercial.besoins', [
             'besoins' => $allbesoin
@@ -54,9 +55,9 @@ class CommController extends Controller
 
     public function insererDemandeProforma()
     {
-        if(session()->has('user'))
+        if(Auth::check())
         {
-            $user = session()->get('user');
+            $user = Auth::user();
             $demandeProforma = DemandeProforma::addDemandeProforma($user->id,2);
         }
         else
