@@ -12,11 +12,11 @@ class DetailFournisseur extends Model
 
     public function getMesDemandeProforma()
     {
-        $demandes = DemandeProforma::where('fournisseur_id','=',$this->fournisseur()->id);
+        $demandes = DemandeProforma::where('fournisseur_id','=',$this->fournisseur->id);
     }
 
-    
-    
+
+
     public function fournisseur() {
         return $this->belongsTo(\App\Models\Fournisseur::class);
     }

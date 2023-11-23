@@ -10,13 +10,13 @@ use App\Models\User;
 class LoginController extends Controller
 {
     public function login() {
-        User::create([
-            'name' => 'Jean Baptiste',
-            'email' => 'user@example.com',
-            'password' => 'root',
-            'profil' => 2,
-            'auth_level' => 5
-        ]);
+        // User::create([
+        //     'name' => 'Jean Baptiste',
+        //     'email' => 'user@example.com',
+        //     'password' => 'root',
+        //     'profil' => 2,
+        //     'auth_level' => 5
+        // ]);
         return view('login');
     }
 
@@ -47,5 +47,10 @@ class LoginController extends Controller
 
         }
 
+    }
+
+    public function doLogout() {
+        Auth::logout();
+        return to_route('auth.login');
     }
 }

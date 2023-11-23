@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return redirect()->route('auth.login');
+});
+
+
 Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('auth.login');
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'doLogin']);
+Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'doLogout'])->name('auth.logout');
 
 Route::prefix('/comm')->name('comm.')->controller(\App\Http\Controllers\CommController::class)->middleware('auth')->group(function (){
     Route::get('/', 'index')->name('index');
@@ -27,6 +33,7 @@ Route::prefix('/comm')->name('comm.')->controller(\App\Http\Controllers\CommCont
 
 Route::prefix('/provider')->name('fournisseur.')->controller(\App\Http\Controllers\CommController::class)->group(function (){
     Route::get('/', 'index')->name('index');
+    Route::get('/demandes/{demande}', 'envoyerProformat')->name('envoyerProforma');
 });
 
 Route::get('/validationBesoins', [\App\Http\Controllers\BesoinController::class,'getBesoins'])->name('besoins.all');

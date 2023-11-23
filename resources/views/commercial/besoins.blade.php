@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    @foreach ($besoins as $besoin)
-        <div>
-            <p>{{ $besoin->product->name }}</p>
-            <p>Quantité : {{ $besoin->quantity }}</p>
-            <hr>
+@extends('commercial.base')
+
+@section('content')
+
+@foreach ($besoins as $besoin)
+    <div class="row">
+        <div class="col-lg-6">
+        <!-- Default Card Example -->
+        <div class="card mb-4">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+                <p>{{ $besoin->product->name }}</p>
+                <p>Quantité : {{ $besoin->quantity }}</p>
+                <hr>
+            </div>
         </div>
-    @endforeach
-</body>
-</html>
+    </div>
+
+</div>
+@endforeach
+@endsection
+
