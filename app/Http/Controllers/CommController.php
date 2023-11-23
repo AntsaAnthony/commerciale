@@ -17,7 +17,7 @@ class CommController extends Controller
 {
     public function index()
     {
-        dd(BonDeCommande::find(1)->proformat);
+        return view('commercial.index');
     }
 
     public function showProductGroup()
@@ -36,6 +36,7 @@ class CommController extends Controller
             'quantity' => $request->input('quantity'),
             'etat' => 0
         ]);
+        return redirect()->route('comm.needs');
     }
     public function AffichBesoin()
     {
